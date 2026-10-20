@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3f5">
+  <title>Gửi em, nhân ngày 20/10 💌</title>
+  <style>
+    :root {
+      --rose: #d94f75;
+      --rose-dark: #a92c52;
+      --ink: #49323b;
+      --muted: #806a73;
+      --paper: #fffaf9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(ellipse at 12% 10%, #ffe1e8 0, transparent 34%),
+        radial-gradient(ellipse at 92% 82%, #ffe5d6 0, transparent 30%),
+        #fff5f4;
+      display: grid;
+      place-items: center;
+      padding: 28px 16px;
+      overflow-x: hidden;
+    }
+    .card {
+      width: min(100%, 700px);
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 7vw, 58px);
+      text-align: center;
+      background: rgba(255, 250, 249, .92);
+      border: 1px solid rgba(217, 79, 117, .16);
+      border-radius: 30px;
+      box-shadow: 0 24px 70px rgba(133, 54, 77, .13);
+    }
+    .card::before, .card::after {
+      content: "♡";
+      position: absolute;
+      color: #f2b2c2;
+      font-size: 42px;
+      opacity: .65;
+    }
+    .card::before { top: 18px; left: 22px; transform: rotate(-18deg); }
+    .card::after { right: 22px; bottom: 18px; transform: rotate(18deg); }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      color: var(--rose-dark);
+      background: #ffe8ed;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    h1 {
+      margin: 20px 0 10px;
+      color: var(--rose-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 8vw, 4.4rem);
+      line-height: 1.05;
+    }
+    .to { margin: 0; font-size: 1.15rem; color: var(--muted); }
+    .flower { margin: 24px 0 12px; font-size: 3.2rem; animation: bob 2.8s ease-in-out infinite; }
+    .intro {
+      max-width: 500px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .memories { margin: 30px 0; }
+    .memories h2 {
+      margin: 0 0 18px;
+      color: var(--rose-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      line-height: 1.35;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .memory {
+      min-width: 0;
+      margin: 0;
+      padding: 8px 8px 12px;
+      background: #fff;
+      border: 1px solid #f5d5dc;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(133, 54, 77, .08);
+    }
+    .memory:first-child { grid-column: 1 / -1; }
+    .memory img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 11px;
+    }
+    .memory:first-child img { aspect-ratio: 1280 / 852; }
+    .memory figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+    .wishes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0 30px;
+    }
+    .wish {
+      padding: 16px 10px;
+      border: 1px solid #f5d5dc;
+      border-radius: 18px;
+      background: #fff;
+      color: #75515d;
+      font-size: .94rem;
+      line-height: 1.5;
+    }
+    .wish span { display: block; margin-bottom: 6px; font-size: 1.5rem; }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 24px;
+      color: #fff;
+      background: linear-gradient(135deg, #e76588, #c63d68);
+      box-shadow: 0 9px 22px rgba(198, 61, 104, .24);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(198, 61, 104, .3); }
+    button:focus-visible { outline: 3px solid #f2a9bb; outline-offset: 4px; }
+    .letter {
+      display: none;
+      max-width: 510px;
+      margin: 24px auto 0;
+      padding: 22px 24px;
+      background: #fff0f3;
+      border-radius: 20px;
+      text-align: left;
+      line-height: 1.85;
+      animation: appear .45s ease both;
+    }
+    .letter.show { display: block; }
+    .signature { margin-top: 14px; color: var(--rose-dark); font-weight: 700; text-align: right; }
+    .footer { margin-top: 28px; color: #a18b93; font-size: .84rem; }
+    .petal {
+      position: fixed;
+      top: -30px;
+      z-index: 2;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+    @keyframes bob { 50% { transform: translateY(-7px) rotate(4deg); } }
+    @keyframes appear { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fall { to { transform: translate(var(--drift), 110vh) rotate(600deg); opacity: .1; } }
+    @media (max-width: 520px) {
+      .card { border-radius: 24px; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .memory img, .memory:first-child img { aspect-ratio: auto; }
+      .wishes { grid-template-columns: 1fr; gap: 9px; }
+      .wish { padding: 11px 14px; }
+      .wish span { display: inline; margin-right: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="eyebrow">20 THÁNG 10</div>
+    <h1>Dành cho<br>Tú Uyên</h1>
+    <p class="to">Gửi cô chủ shop của tôi</p>
+    <div class="flower" aria-hidden="true">🌷</div>
+    <p class="intro">
+      Mượn hôm nay để nói với em: có em bên cạnh khiến những ngày bình thường của anh cũng trở nên thật đáng yêu.
+    </p>
+    <section class="memories" aria-labelledby="memories-title">
+      <h2>Những khoảnh khắc của chúng mình ♡</h2>
+      <div class="photo-grid">
+        <figure class="memory">
+          <img src="images/ky-niem-01.png" alt="hihihihi" width="1280" height="852" loading="lazy" decoding="async">
+          <figcaption>hihihihihi</figcaption>
+        </figure>
+        <figure class="memory">
+          <img src="images/ky-niem-02.png" alt="hehehhehe" width="1284" height="963" loading="lazy" decoding="async">
+          <figcaption>hehehehehehe</figcaption>
+        </figure>
+        <figure class="memory">
+          <img src="images/ky-niem-03.png" alt="iuiuuuuu" width="1020" height="1020" loading="lazy" decoding="async">
+          <figcaption>iuiuuuuu</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="wishes" aria-label="Lời chúc dành cho em">
+      <div class="wish"><span>🌸</span>Luôn xinh đẹp và rạng rỡ</div>
+      <div class="wish"><span>☀️</span>Ngày nào cũng vui vẻ, bình yên</div>
+      <div class="wish"><span>💖</span>Thuận lợi trong mọi việc sắp tới</div>
+    </section>
+    <button id="openLetter" type="button" aria-expanded="false" aria-controls="letter">Nhấn để mở lời nhắn 💌</button>
+    <section class="letter" id="letter" aria-live="polite">
+      <p>Êu ơiiii, cảm ơn em vì đã xuất hiện và làm cuộc sống của anh có thêm nhiều điều để vui vẻ, để mong chờ và cố gắng. Anh mong em luôn tự tin, hạnh phúc và gặp thật nhiều điều tốt đẹp. Chúc cô gái tôi thương không chỉ một ngày 20/10 mà tất cả các ngày trong năm đều như thế này nhéeee</p>
+      <p class="signature">Thương em nhiều,<br>Minh 💗</p>
+    </section>
+    <div class="footer">Một món quà nhỏ, dành riêng cho em.</div>
+  </main>
+  <script>
+    const button = document.querySelector('#openLetter');
+    const letter = document.querySelector('#letter');
+    button.addEventListener('click', () => {
+      const isOpen = letter.classList.toggle('show');
+      button.setAttribute('aria-expanded', String(isOpen));
+      button.textContent = isOpen ? 'Đóng lời nhắn 💌' : 'Nhấn để mở lời nhắn 💌';
+      if (isOpen) makePetals();
+    });
+
+    function makePetals() {
+      for (let i = 0; i < 18; i++) {
+        const petal = document.createElement('span');
+        petal.className = 'petal';
+        petal.textContent = ['🌸', '💗', '✨'][Math.floor(Math.random() * 3)];
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.setProperty('--drift', (Math.random() * 160 - 80) + 'px');
+        petal.style.animationDuration = (3 + Math.random() * 3) + 's';
+        petal.style.fontSize = (14 + Math.random() * 14) + 'px';
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 6500);
+      }
+    }
+  </script>
+</body>
+</html>
